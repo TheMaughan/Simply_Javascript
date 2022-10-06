@@ -1,6 +1,13 @@
 // courses.js
+
+
+const myself = {
+	name: "Bryce",
+
+}
+
 const aCourse = {
-	code: "CSE121b",
+	code: "CSE 121B",
 	name: "Javascript Language",
 	logo: 'image/logo.png',
 	sections: [
@@ -10,7 +17,16 @@ const aCourse = {
 	//methood
 	showSection: function(){
 		console.log('ShowSectoin method ran');
+	},
+	enrollStudent: function(sectionNum){
+		const sectionIndex = this.section.findIndex((item)=> item.sectionNum ==
+		sectionNum);
+		if (sectionIndex >= 0){
+			this.sections[sectionIndex].enrolled++;
+			renderSections(this.sections);
+		}
 	}
+
   };
 
 console.log(aCourse.name);
@@ -35,3 +51,22 @@ aCourse.sections.forEach(item => {
 })
 
 aCourse.showSection();
+
+function renderSection(sections) {
+	const html = sections.map(
+		(section) => `<tr> <td>${section.sectionNum}</td>
+		<td>${section.roomNum}</td>
+		<td>${section.enrolled}</td>
+		<td>${section.days}</td>
+		<td>${section.instructor}</td></tr>`
+	);
+	document.querySelector('#courses').innerHTML = html.join("");
+}
+
+document.querySelector('#enrollStudent').addEventListener('click', function (){
+	const sectionNum = document.querySelector('#sectionNumber').value;
+	aCourse.enrollStudent(sectionNum);
+})
+
+setCourseInfo(aCourse);
+renderSections(aCourse.sections);
