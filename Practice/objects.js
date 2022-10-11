@@ -101,5 +101,3 @@ document.querySelector("#dropStudent").addEventListener("click", function () {
 
 setCourseInfo(aCourse);
 renderSection(aCourse.sections);
-
-export default aCourse
