@@ -7,7 +7,7 @@ console.log(user);
 printName(user);
 printAge(user);
 
-/*import aCourse from '/objects.js'
+import aCourse from './objects.js'
 
 document.querySelector("#enrollStudent").addEventListener("click", function () {
 	const sectionNum = document.querySelector("#sectionNumber").value;
@@ -17,4 +17,4 @@ document.querySelector("#enrollStudent").addEventListener("click", function () {
 setTimeout(function(){
 	console.log('async');
 }, 1000);
-console.log('synchronous');*/
+console.log('synchronous');

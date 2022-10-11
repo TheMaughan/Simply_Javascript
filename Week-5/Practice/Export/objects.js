@@ -54,8 +54,7 @@ console.log(aCourse.name);
 //document.querySelector('#courseName').textContent = aCourse.name;
 //document.querySelector('#courseCode').textContent = aCourse.code;
 
-document.querySelector('img').setAttribute('src', aCourse.logo);
-document.querySelector('img').setAttribute('alt', aCourse.name);
+
 
 console.log(aCourse.sections[0].enrolled);
 
