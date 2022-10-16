@@ -2,23 +2,18 @@ const url = "https://pokeapi.co/api/v2/pokemon/ditto";
 const urlList = "https://pokeapi.co/api/v2/pokemon";
 let results = null;
 
-async function getPokemon(url) {
+async function getPokemon(url, doThis) {
   const response = await fetch(url);
   //check to see if the fetch was successful
   if (response.ok) {
     // the API will send us JSON...but we have to convert the response before we can use it
     // .json() also returns a promise...so we await it as well.
     const data = await response.json();
-    doStuff(data);
+    // execute the callback
+    doThis(data);
   }
 }
-async function getPokemonList(url) {
-  const response = await fetch(url);
-  if (response.ok) {
-    const data = await response.json();
-    doStuffList(data);
-  }
-}
+
 function doStuff(data) {
   results = data;
   const outputElement = document.querySelector("#output");
@@ -50,11 +45,15 @@ function doStuffList(data) {
   pokeList = sortPokemon(pokeList);
   pokeList.forEach((currentItem) => {
     const html = `<li>${currentItem.name}</li>`;
+    
     //note the += here
     pokeListElement.innerHTML += html;
   });
 }
-getPokemon(url);
-console.log("second: ", results);
 
-getPokemonList(urlList);
+getPokemon(url, doStuff);
+console.log("second: ", results);
+// Notice that by just passing a different callback function in
+// we can totally change what happens when the data comes back.
+// It's like we gave the getPokemon function superpowers!
+getPokemon(urlList, doStuffList);
