@@ -45,6 +45,9 @@ function doStuffList(data) {
   pokeList = sortPokemon(pokeList);
   pokeList.forEach((currentItem) => {
     const html = `<li>${currentItem.name}</li>`;
+    //let img = document.createElement("img");
+    //img.setAttribute("src", currentItem.url.sprites.front_default);
+    //img.setAttribute("alt", currentItem.name);
     
     //note the += here
     pokeListElement.innerHTML += html;

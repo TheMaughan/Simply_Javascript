@@ -67,7 +67,7 @@ function animal_sort_desc(a, b) {
 	} else return 0;
 }
 
-function outputPets() {
+const outputPets = (animals) => {
 	animals.forEach(item => {
 		let petSection = document.querySelector('#pets');
 		let petName = document.createElement('h2');

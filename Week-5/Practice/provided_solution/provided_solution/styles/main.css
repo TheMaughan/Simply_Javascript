@@ -4,34 +4,8 @@ article {
 }
 
 body {
-  margin: 0;
-  background-image: url('blue_tech.jpg');
-  background-blend-mode: screen;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  border-top: 20px;
-  background-size: 100% 100%;
-  font-family: 'Kalam', cursive;
+    font-family: 'Kalam', cursive;
 }
-
-/* For the main content area */
-#Main_body {
-  background-color: rgba(0,0,0,.9);
-  width: 75%;
-  height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  color: #d5efffbb;
-}
-.mask {
-    background:transparent; 
-    padding:50px;
-}
-
-
-
-
 
 div {
     margin: 10px;
