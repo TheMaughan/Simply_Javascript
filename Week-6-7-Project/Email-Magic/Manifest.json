@@ -1,0 +1,11 @@
+{
+    "name": "Email Magic",
+    "version": "1.0.0",
+    "description": "Maks Emails Easy!",
+    "manifest_version": 3,
+    "author": "Bryce Maughan",
+    "action":{
+        "default_popup": "email-magic.html",
+        "default_title": "Email Magic"
+    }
+}
