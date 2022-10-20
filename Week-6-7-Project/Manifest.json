@@ -1,0 +1,11 @@
+{
+    "name": "My First Chrome Extension",
+    "version": "1.0.0",
+    "description": "Learning how to make Chrome Extensions",
+    "manifest_version": 3,
+    "author": "Bryce Maughan",
+    "action":{
+        "default_popup": "project.html",
+        "default_title": "Temple List"
+    }
+}
