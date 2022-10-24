@@ -56,6 +56,7 @@ console.log(aCourse.name);
 
 document.querySelector('img').setAttribute('src', aCourse.logo);
 document.querySelector('img').setAttribute('alt', aCourse.name);
+document.querySelector('img').setAttribute('width', 240);
 
 console.log(aCourse.sections[0].enrolled);
 
@@ -102,4 +103,4 @@ document.querySelector("#dropStudent").addEventListener("click", function () {
 setCourseInfo(aCourse);
 renderSection(aCourse.sections);
 
-export default aCourse
+//export default aCourse

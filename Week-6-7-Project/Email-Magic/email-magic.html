@@ -73,26 +73,36 @@
       
         <!--  Main Content Container  -->
     <div class="c-grid" id="Main_body">
+      <div class="s-flex">
       <!-- Start of Form: -->
       <form name="market_payment" id="market_payment" onsubmit="submitPayment()"></form>
         <div class="no-bull" id="namespace">
           <h2>Input Trigger Macros Here:</h2>
-          <li><input name="trigger" type="text" id="trigger" placeholder="'/trigger'" onkeyup="Validate_Trigger(this)" required/><br></li><br>
+          <li><input name="trigger" type="text" id="trigger" placeholder="'/trigger'" required/><br></li><br> <!--onkeyup="Validate_Trigger(this)"-->
           <li><p name="trigger_happy" type="text" id="trigger_happy"></p></li><br>
           <!-- : -->
               <ul class="no-bull">
-                    <div><!-- Email-Text Input -->
+                <div class="c-grid"><!-- Email-Text Input -->
+                    <div>
                       <li><p id="validate"></p></li>
-                      <li><textarea name="email_text" type="textarea" id="email_text" cols="200" rows="100" required 
+                      <li><textarea name="email_text" type="textarea" id="email_text" cols="200" rows="100" required spellcheck="true"
                             placeholder="Type '/' then the macro trigger name to test a Macro
               
                             Or add a new email macro to your colection." onkeyup="magic_text(this)"></textarea><br></li> <!-- onkeyup="textMagic(this)"-->
                     </div>
+                </div>
               </ul>
               <button type="submit" id="submit" class="fa fa-send"></button>
               <button type="button" id="clear" class="fa fa-trash"></button>
+            </form>
+          </div>
         </div>
-        </form>
+
+        <div class="s-flex">
+          <label>Saved Triggers:</label>
+          <!--p id="test"></p-->
+          <ul id="myList"></ul>
+        </div>
         <!-- End of Form: -->
         <script src="script/email-magic.js"></script>
   </section>

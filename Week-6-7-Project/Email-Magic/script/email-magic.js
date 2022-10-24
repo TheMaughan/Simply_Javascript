@@ -1,31 +1,68 @@
 //JavaScript File
-// Morgage Calculator - Created for Week 07 assignment
-const submit = (ev)=>{
-  ev.preventDefault();
+// Magic Email Macro Maker
+
+//Saved Macro Triggers:
+let macros = [];
+
+const render=(macros)=>{
+  const listElement = document.querySelector('#myList');
+  listElement.innerHTML = "";
+  macros.forEach(macro => {
+    listElement.innerHTML += `
+    <dt>Trigger: ${macro.trigger}</dt>
+      <dd>${macro.email_text}</dd>`;
+      //<dd>RegEx: ${macro.regedit}</dd>`;
+  });
+};
+
+function newMacro() {
+  const newMacro = document.getElementById("trigger").value;
+  const newText = document.getElementById("email_text").value;
+
+  let pattern = new RegExp(newMacro);
+  
+  macros.push({
+    trigger: newMacro,
+    email_text: newText,
+    regedit: pattern,
+  });
+  render(macros);
+}
+
+const submit = ()=>{
+  //ev.preventDefault();
   //Get the input node values:
   let text, trig;
   
   text = email_text.value;
   trig = trigger.value;
+
+  // Regular Expression Time!
+  const spell = /\/([\S])*/y; //Look for a string after a "/" and end the match at a white space.
+  // Note to self, the "/y" is a sticky (strict) search while the "/g" is global.
+  //Validate trigger:
   
   //valid form?
-  if (text.trim() == ''){
+  if (text.trim() == '' ){
     document.getElementById('validate').innerHTML = "Type Some Text";
     document.getElementById('validate').style.textShadow = '0px 0px 10px red';
     document.getElementById('email_text').style.boxShadow = '0px 0px 10px red inset';
     document.getElementById("email_text").focus();
-  //} else if (trig.trim() == ''){
-    //document.getElementById('validate').innerHTML = "Trigger Input";
-    //document.getElementById('validate').style.textShadow = '0px 0px 10px red';
-    //document.getElementById('trigger').style.boxShadow = '0px 0px 10px red inset';
-    //document.getElementById("trigger").focus();
+  } else if (spell.test(trig) == false){
+    //document.getElementById('trigger_happy').style.textShadow = '0px 0px 10px red';
+    document.getElementById('trigger').innerHTML = "Invalid Entry";
+    document.getElementById('trigger').style.boxShadow = '0px 0px 10px red inset';
+    document.getElementById("trigger").focus();
   } else {
     document.getElementById('email_text').style.boxShadow = 'none';
     document.getElementById('trigger').style.boxShadow = 'none';
-    document.getElementById('validate').innerHTML = 'I like pressing buttons too!';
+    document.getElementById('trigger_happy').style.textShadow = 'none';
+    document.getElementById('validate').innerHTML = 'Macro is valid and saved';
     document.getElementById('validate').style.textShadow = '0px 0px 10px green';
-  }
-};
+    console.log(email_text.value);
+    newMacro();
+    }
+  };
 
 const clear = (ev)=>{// When mouse clicks on 'clear' button:
   ev.preventDefault();
@@ -47,27 +84,20 @@ const clear = (ev)=>{// When mouse clicks on 'clear' button:
   document.getElementById("email_text").focus(); // put cursor inside the textbox
 };
 
-// Replace Text Input
-const Validate_Trigger = ()=> {
-  let trig = document.getElementById('trigger').value;
-  // Regular Expression Time!
-  const spell = /\/([\S])*/y; //Look for a string after a "/" and end the match at a white space.
-  // Note to self, the "/y" is a sticky (strict) search while the "/g" is global.
-  //Validate trigger:
-  if (spell.test(trig) == true){
-    document.getElementById('trigger_happy').style.textShadow = '0px 0px 10px green';
-    document.getElementById('trigger_happy').innerHTML = `Your trigger is: ${trig}`; // Output the reorganized string:
-  } else {
-    document.getElementById('trigger_happy').style.textShadow = '0px 0px 10px red';
-    document.getElementById('trigger_happy').innerHTML = "Enter a Trigger, start with a '/' then your trigger word";
-    document.getElementById('trigger').focus();
-  }
-};
-
 const magic_text=()=>{
-  let txt = document.getElementById('email_text').value;
-  
-}
+  let pattern = new RegExp(macros.trigger);
+  let txt = document.querySelector('textarea').value;
+  //console.log(txt);
+  let magic = txt.replace(pattern, macros.email_text);
+
+  console.log(pattern.test('abc1')); // false
+
+  console.log(pattern.test('/asd')); // true
+
+  if (pattern.test(txt) == true) {
+    document.querySelector('textarea').innerHTML = magic;
+  }  
+};
 
 
 // I'm using at least 3 event listeners: 'DOMContentLoaded' = Listen for Load, 
@@ -82,12 +112,12 @@ document.addEventListener('DOMContentLoaded', ()=>{ //Listen for the following e
 });
 
 //testing...
-console.log(/\/([\S])*/y.test('abc1')); // false
-
-console.log(/\/([\S])*/y.test('/abc12')); // true
-
-console.log(/\/([\S])*/y.test('abc/123')); // false
-
-console.log(/\/([\S])*/y.test('abc /123')); // false
-
-console.log(/\/([\S])*/y.test('/123 sfd')); // true
+//console.log(/\/([\S])*/y.test('abc1')); // false
+//
+//console.log(/\/([\S])*/y.test('/abc12')); // true
+//
+//console.log(/\/([\S])*/y.test('abc/123')); // false
+//
+//console.log(/\/([\S])*/y.test('abc /123')); // false
+//
+//console.log(/\/([\S])*/y.test('/123 sfd')); // true
