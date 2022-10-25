@@ -10,7 +10,11 @@ const render=(macros)=>{
   macros.forEach(macro => {
     listElement.innerHTML += `
     <dt>Trigger: ${macro.trigger}</dt>
-      <dd>${macro.email_text}</dd>`;
+    <br>
+      <dd>${macro.email_text}</dd>
+      <br>
+      <dd>RegEx: ${macro.regedit}</dd>
+      `;
       //<dd>RegEx: ${macro.regedit}</dd>`;
   });
 };
@@ -19,7 +23,7 @@ function newMacro() {
   const newMacro = document.getElementById("trigger").value;
   const newText = document.getElementById("email_text").value;
 
-  let pattern = new RegExp(newMacro);
+  let pattern = new RegExp(newMacro, 'g');
   
   macros.push({
     trigger: newMacro,
@@ -43,7 +47,7 @@ const submit = ()=>{
   //Validate trigger:
   
   //valid form?
-  if (text.trim() == '' ){
+  if (text.trim() == ''){
     document.getElementById('validate').innerHTML = "Type Some Text";
     document.getElementById('validate').style.textShadow = '0px 0px 10px red';
     document.getElementById('email_text').style.boxShadow = '0px 0px 10px red inset';
@@ -85,14 +89,16 @@ const clear = (ev)=>{// When mouse clicks on 'clear' button:
 };
 
 const magic_text=()=>{
-  let pattern = new RegExp(macros.trigger);
+  //ev.preventDefault();
+  let pattern = macros.trigger;
   let txt = document.querySelector('textarea').value;
-  //console.log(txt);
-  let magic = txt.replace(pattern, macros.email_text);
+  //console.log(pattern.exec(txt));
+  let magic = txt.replace(pattern.lastIndex, macros.email_text);
 
-  console.log(pattern.test('abc1')); // false
+  //console.log(pattern)
+  //console.log(pattern.test('abc1')); // false
 
-  console.log(pattern.test('/asd')); // true
+  //console.log(pattern.test('/asd')); // true
 
   if (pattern.test(txt) == true) {
     document.querySelector('textarea').innerHTML = magic;
