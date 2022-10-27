@@ -24,22 +24,42 @@ function newMacro() {
   const newText = document.getElementById("email_text").value;
 
   let pattern = new RegExp(newMacro, 'g');
+  //console.log(pattern);
   
   macros.push({
     trigger: newMacro,
     email_text: newText,
     regedit: pattern,
   });
+  console.log(macros.regedit)
   render(macros);
+}
+
+const regex_match=()=>{
+  let text, trig, reg;
+  text = macros.email_text;
+  trig = macros.trigger;
+  pat = macros.regedit;
+
+  console.log(text);
+  console.log(trig);
+  console.log(pat);
+
+
 }
 
 const submit = ()=>{
   //ev.preventDefault();
   //Get the input node values:
-  let text, trig;
+  let text, trig, reg;
   
   text = email_text.value;
   trig = trigger.value;
+  pat = macros.regedit;
+
+  console.log(text);
+  console.log(trig);
+  console.log(pat);
 
   // Regular Expression Time!
   const spell = /\/([\S])*/y; //Look for a string after a "/" and end the match at a white space.
