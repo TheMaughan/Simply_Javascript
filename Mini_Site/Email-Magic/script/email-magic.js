@@ -93,7 +93,7 @@ const magic_text=()=>{
   let pattern = macros.trigger;
   let txt = document.querySelector('textarea').value;
   //console.log(pattern.exec(txt));
-  let magic = txt.replace(pattern.lastIndex, macros.email_text);
+  let magic = txt.replace(pattern, macros.email_text);
 
   //console.log(pattern)
   //console.log(pattern.test('abc1')); // false
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', ()=>{ //Listen for the following e
   document.getElementById('submit').addEventListener('click', submit);// Listen for mouse click button
   document.getElementById('clear').addEventListener('click', clear);// Listen for mouse click button
   // Input onkeyup:
-  //document.getElementById('trigger').addEventListener('keyup', Email_Magic_Trigger);// update when the user releases a key
+  document.getElementById('email_text').addEventListener('keyup', magic_text);// update when the user releases a key
 });
 
 //testing...
