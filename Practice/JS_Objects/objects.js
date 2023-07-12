@@ -9,7 +9,7 @@
 const aCourse = {
 	code: "CSE 121B",
 	name: "Javascript Language",
-	logo: 'image/logo.png',
+	logo: '../image/logo.png',
 	sections: [
 		{
 		sectionNum: 1,
