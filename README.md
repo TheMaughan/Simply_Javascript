@@ -1,2 +1,2 @@
 # CSE-121B__Javascript
- Lots of basic Javascript
+This repository is a demonstration of my basic JavaScript skills.
